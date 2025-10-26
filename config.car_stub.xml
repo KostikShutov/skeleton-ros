@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<Config>
+    <Algorithms>
+        <Algorithm>
+            <Name>AUTO</Name>
+            <Module>car/StubAutoAlgorithm.py</Module>
+            <Method>execute</Method>
+        </Algorithm>
+    </Algorithms>
+    <Commands>
+        <Command>
+            <Name>SPEED</Name>
+            <Params>
+                <Param name="speed"/>
+            </Params>
+        </Command>
+        <Command>
+            <Name>FORWARD</Name>
+            <Params>
+                <Param name="speed"/>
+                <Param name="duration"/>
+            </Params>
+        </Command>
+        <Command>
+            <Name>BACKWARD</Name>
+            <Params>
+                <Param name="speed"/>
+                <Param name="duration"/>
+            </Params>
+        </Command>
+        <Command>
+            <Name>MOVE</Name>
+            <Params>
+                <Param name="speed"/>
+                <Param name="duration"/>
+                <Param name="steering"/>
+            </Params>
+        </Command>
+        <Command>
+            <Name>STOP</Name>
+            <Params>
+                <Param name="duration"/>
+            </Params>
+        </Command>
+        <Command>
+            <Name>LEFT</Name>
+            <Params/>
+        </Command>
+        <Command>
+            <Name>STRAIGHT</Name>
+            <Params/>
+        </Command>
+        <Command>
+            <Name>RIGHT</Name>
+            <Params/>
+        </Command>
+        <Command>
+            <Name>TURN</Name>
+            <Params>
+                <Param name="steering"/>
+            </Params>
+        </Command>
+        <Command>
+            <Name>CAMERA_LEFT</Name>
+            <Params/>
+        </Command>
+        <Command>
+            <Name>CAMERA_RIGHT</Name>
+            <Params/>
+        </Command>
+        <Command>
+            <Name>CAMERA_UP</Name>
+            <Params/>
+        </Command>
+        <Command>
+            <Name>CAMERA_DOWN</Name>
+            <Params/>
+        </Command>
+    </Commands>
+    <Drivers>
+        <Driver>
+            <Name>SPEED_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>speed</Method>
+            <Params>
+                <Param name="speed"/>
+            </Params>
+        </Driver>
+        <Driver>
+            <Name>FORWARD_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>forward</Method>
+            <Params>
+                <Param name="speed"/>
+            </Params>
+        </Driver>
+        <Driver>
+            <Name>BACKWARD_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>backward</Method>
+            <Params>
+                <Param name="speed"/>
+            </Params>
+        </Driver>
+        <Driver>
+            <Name>STOP_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>stop</Method>
+            <Params>
+                <Param name="duration"/>
+            </Params>
+        </Driver>
+        <Driver>
+            <Name>LEFT_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>left</Method>
+            <Params/>
+        </Driver>
+        <Driver>
+            <Name>STRAIGHT_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>straight</Method>
+            <Params/>
+        </Driver>
+        <Driver>
+            <Name>RIGHT_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>right</Method>
+            <Params/>
+        </Driver>
+        <Driver>
+            <Name>TURN_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>turn</Method>
+            <Params>
+                <Param name="angle"/>
+            </Params>
+        </Driver>
+        <Driver>
+            <Name>CAMERA_LEFT_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>cameraLeft</Method>
+            <Params/>
+        </Driver>
+        <Driver>
+            <Name>CAMERA_RIGHT_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>cameraRight</Method>
+            <Params/>
+        </Driver>
+        <Driver>
+            <Name>CAMERA_UP_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>cameraUp</Method>
+            <Params/>
+        </Driver>
+        <Driver>
+            <Name>CAMERA_DOWN_DRIVER</Name>
+            <Module>car/StubRemoteController.py</Module>
+            <Method>cameraDown</Method>
+            <Params/>
+        </Driver>
+    </Drivers>
+    <Interfaces>
+        <Interface>
+            <Command>SPEED</Command>
+            <Drivers>
+                <Driver name="SPEED_DRIVER">
+                    <Params>
+                        <Param paramFrom="speed" paramTo="speed"/>
+                    </Params>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>FORWARD</Command>
+            <Drivers>
+                <Driver name="FORWARD_DRIVER">
+                    <Params>
+                        <Param paramFrom="speed" paramTo="speed"/>
+                    </Params>
+                </Driver>
+                <Driver name="STOP_DRIVER">
+                    <Params>
+                        <Param paramFrom="duration" paramTo="duration"/>
+                    </Params>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>BACKWARD</Command>
+            <Drivers>
+                <Driver name="BACKWARD_DRIVER">
+                    <Params>
+                        <Param paramFrom="speed" paramTo="speed"/>
+                    </Params>
+                </Driver>
+                <Driver name="STOP_DRIVER">
+                    <Params>
+                        <Param paramFrom="duration" paramTo="duration"/>
+                    </Params>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>MOVE</Command>
+            <Drivers>
+                <Driver name="TURN_DRIVER">
+                    <Params>
+                        <Param paramFrom="steering" paramTo="angle"/>
+                    </Params>
+                </Driver>
+                <Driver name="FORWARD_DRIVER">
+                    <Params>
+                        <Param paramFrom="speed" paramTo="speed"/>
+                    </Params>
+                </Driver>
+                <Driver name="STOP_DRIVER">
+                    <Params>
+                        <Param paramFrom="duration" paramTo="duration"/>
+                    </Params>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>STOP</Command>
+            <Drivers>
+                <Driver name="STOP_DRIVER">
+                    <Params>
+                        <Param paramFrom="duration" paramTo="duration"/>
+                    </Params>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>LEFT</Command>
+            <Drivers>
+                <Driver name="LEFT_DRIVER">
+                    <Params/>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>STRAIGHT</Command>
+            <Drivers>
+                <Driver name="STRAIGHT_DRIVER">
+                    <Params/>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>RIGHT</Command>
+            <Drivers>
+                <Driver name="RIGHT_DRIVER">
+                    <Params/>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>TURN</Command>
+            <Drivers>
+                <Driver name="TURN_DRIVER">
+                    <Params>
+                        <Param paramFrom="steering" paramTo="angle"/>
+                    </Params>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>CAMERA_LEFT</Command>
+            <Drivers>
+                <Driver name="CAMERA_LEFT_DRIVER">
+                    <Params/>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>CAMERA_RIGHT</Command>
+            <Drivers>
+                <Driver name="CAMERA_RIGHT_DRIVER">
+                    <Params/>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>CAMERA_UP</Command>
+            <Drivers>
+                <Driver name="CAMERA_UP_DRIVER">
+                    <Params/>
+                </Driver>
+            </Drivers>
+        </Interface>
+        <Interface>
+            <Command>CAMERA_DOWN</Command>
+            <Drivers>
+                <Driver name="CAMERA_DOWN_DRIVER">
+                    <Params/>
+                </Driver>
+            </Drivers>
+        </Interface>
+    </Interfaces>
+</Config>

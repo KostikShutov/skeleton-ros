@@ -1,0 +1,14 @@
+services:
+  python-ros:
+    build: .
+    container_name: python-ros-container
+    tty: true
+    volumes:
+      - ".:/code"
+    working_dir: /code
+  rabbitmq-ros:
+    image: rabbitmq:management
+    container_name: rabbitmq-ros-container
+    ports:
+      - "2002:15672"
+      - "2003:5672"
